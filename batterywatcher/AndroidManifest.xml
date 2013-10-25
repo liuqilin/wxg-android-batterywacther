@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wxg.batterywatcher"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="5"
+        android:targetSdkVersion="17" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> 
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>  
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>  
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>  
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>  
+    
+    <uses-permission android:name="android.permission.BLUETOOTH" />  
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>  
+    
+    <application
+        android:allowBackup="true"
+        android:persistent="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        <activity
+            android:name="com.wxg.batterywatcher.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <service android:name="com.wxg.service.WatchService"></service>
+        <receiver android:name="com.wxg.startup.StartupReceiver">  
+            <intent-filter>  
+                <action android:name="android.intent.action.BOOT_COMPLETED" />  
+                <category android:name="android.intent.category.HOME" />  
+            </intent-filter>  
+        </receiver>  
+       
+        <receiver android:name="com.wxg.widget.SettingWidget" >
+	      <intent-filter>
+	          <action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
+	          <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+	          <action android:name="android.bluetooth.adapter.action.STATE_CHANGED"/>
+	          <action android:name="android.intent.action.AIRPLANE_MODE"/>
+	          <action android:name="com.wxg.action.widget_wifi.click"/>
+	          <action android:name="com.wxg.action.widget_airplan.click"/>
+	          <action android:name="com.wxg.action.widget_g3.click"/>
+	          <action android:name="com.wxg.action.widget_bluetooth.click"/>
+	          <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+	      </intent-filter>
+	      <meta-data android:name="android.appwidget.provider"
+	                 android:resource="@xml/widget_info" />
+      </receiver>
+      
+    </application>
+
+</manifest>

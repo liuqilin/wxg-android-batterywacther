@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/switch_widget_4x1_bg"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingLeft="14dp"
+    android:paddingRight="14dp"
+    android:paddingTop="10dp"
+    android:visibility="visible" >
+  
+  <ImageView
+      android:id="@+id/wifi_btn"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:layout_weight="0.25"
+      android:adjustViewBounds="true"
+      android:clickable="true"
+      android:gravity="center"
+      android:longClickable="false"
+      android:scaleType="centerInside"
+      android:src="@drawable/settings_wifi_off"
+      android:visibility="visible" />
+
+  <ImageView
+       android:id="@+id/g3_btn"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:layout_weight="0.25"
+       android:src="@drawable/settings_mobile_off"
+       android:clickable="true"
+       android:gravity="center"
+       android:scaleType="centerInside"/>
+  <ImageView
+       android:id="@+id/airplan_btn"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:layout_weight="0.25"
+       android:src="@drawable/settings_airplan_off"
+       android:clickable="true"
+       android:gravity="center"
+       android:scaleType="centerInside"/>
+  
+  <ImageView
+       android:id="@+id/bluetooth_btn"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:layout_weight="0.25"
+       android:src="@drawable/settings_bluetooth_off"
+       android:clickable="true"
+       android:gravity="center"
+       android:scaleType="centerInside"/>
+    
+</LinearLayout>
