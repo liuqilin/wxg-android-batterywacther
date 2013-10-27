@@ -46,59 +46,6 @@ public class MainActivity extends Activity {
 			}
 	    }
 	};
-	 
-	/**
-	 * 在android的机子上执行linux下终端命令
-	 * @param cmds
-	 * @throws Exception
-	 */
-	public void runAsRoot(String[] cmds) throws Exception {
-	    Process p = Runtime.getRuntime().exec("su");
-	    DataOutputStream os = new DataOutputStream(p.getOutputStream());
-	    InputStream is = p.getInputStream();
-	    for (String tmpCmd : cmds) {
-	        os.writeBytes(tmpCmd+"\n");
-	        int readed = 0;
-	        byte[] buff = new byte[4096];
-
-	        // if cmd requires an output
-	        // due to the blocking behaviour of read(...)
-	        boolean cmdRequiresAnOutput = true;
-	        if (cmdRequiresAnOutput) {
-	            while( is.available() <= 0) {
-	                try { Thread.sleep(200); } catch(Exception ex) {}
-	            }
-
-	            while( is.available() > 0) {
-	                readed = is.read(buff);
-	                if ( readed <= 0 ) break;
-	                String seg = new String(buff,0,readed);
-	                System.out.println("#> "+seg);
-	            }
-	        }
-	    }        
-	    os.writeBytes("exit\n");
-	    os.flush();
-	}
-	
-	
-	/**
-	 * android终端下的命令为：
-	 *   adb shell
-	 *   # /system/bin/screencap -p /sdcard/myscreenshot.png
-	 *      
-	 *      
-	 * @throws IOException 
-	 * @throws InterruptedException 
-	 */
-	public void screenShot(String path) throws IOException, InterruptedException{
-		Process sh = Runtime.getRuntime().exec("su", null,null);
-        OutputStream os = sh.getOutputStream();
-		os.write(("/system/bin/screencap -p " + path).getBytes("ASCII"));
-		os.flush();
-        os.close();
-        sh.waitFor();
-	}
 	
 	
 	@Override
